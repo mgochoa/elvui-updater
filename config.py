@@ -17,11 +17,6 @@ class AppConfig:
         else:
             return False
 
-    # def save_wow_addon_folder(self, selected_folder):
-    #     self.config["Settings"] = {"WOW_ADDONS_FOLDER": selected_folder}
-    #     with open(self.config_file, "w") as configfile:
-    #         self.config.write(configfile)
-
     def get_setting(self, key) -> str or None:
         return self.config["Settings"].get(key)
 

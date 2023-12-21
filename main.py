@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 import pygame
-
+# TODO: Delete this file, refactor anything refactorable to gui.py
 from config import AppConfig
 from updater_service import UpdaterService
 
@@ -10,7 +10,7 @@ updater_service = UpdaterService()
 
 
 def play_background_music():
-    pygame.mixer.music.load("sounds/mandragora.mp3")
+    pygame.mixer.music.load("assets/frame0/mandragora.mp3")
     pygame.mixer.music.play(-1)  # -1 plays the music in a loop
     pygame.mixer.music.set_volume(1)
 

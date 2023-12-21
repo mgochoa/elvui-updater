@@ -4,6 +4,8 @@ import tempfile
 import requests
 from zipfile import ZipFile
 
+from logger import logger
+
 API_URL = "https://api.tukui.org/v1/addon/elvui"
 
 
@@ -21,7 +23,7 @@ class UpdaterService:
 
     def load_elvui_metadata(self):
         self.elvui_metadata = get_metadata(API_URL)
-        print("Elvui metadata", self.elvui_metadata)
+        logger.debug(f"Elvui metadata: {self.elvui_metadata}")
 
     def get_zip_file(self) -> tempfile.NamedTemporaryFile:
         response = requests.get(self.elvui_metadata["url"])
@@ -36,9 +38,9 @@ class UpdaterService:
                     z_object.extractall(path=temp_dir)
                     if temp_dir and len(os.listdir(temp_dir)) > 1:
                         shutil.copytree(temp_dir, destination, dirs_exist_ok=True)
-                        print("Copied elvui correctly to addons folder")
+                        logger.info("Copied elvui correctly to addons folder")
 
     def update_elvui(self, wow_addon_folder):
         self.temp_zip = self.get_zip_file()
-        print(f"Download in to temp zip:{self.temp_zip}")
+        logger.debug(f"Download in to temp zip:{self.temp_zip}")
         self.unzip_and_copy_to_folder(wow_addon_folder)

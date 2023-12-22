@@ -17,6 +17,7 @@ class AppConfig:
         if not os.path.exists(self.config_file):
             self.config["Settings"] = {"WOW_ADDONS_FOLDER": ""}
             self.config.write(open(self.config_file, "w"))
+            logger.info('Created config ini')
         else:
             self.config.read(self.config_file)
 
